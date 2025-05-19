@@ -1,17 +1,20 @@
 # 👻 Activity Logging Microservice
 
-This is a scalable, event-driven microservice built with Node.js, Kafka, MongoDB, and Docker. It handles user activity logs in real time, stores them efficiently, and exposes a REST API to query logs with pagination and filtering.
-
+"This microservice is designed for scalability and real-time processing using Node.js, Kafka, MongoDB, and Docker. It captures user activity events, stores them efficiently, and provides a RESTful API to retrieve logs with support for pagination and filtering."
 ---
 
-## 🚀 Project Features
+🚀 Key Features
+⚙️ Asynchronous processing of user activity logs via Kafka Producer and Consumer
 
-- 😎 Kafka Producer/Consumer to process user activity logs asynchronously
-- 😎 MongoDB storage with proper indexing for performance
-- 😎 REST API with pagination & filtering support
-- 😎 Built using DDD (Domain-Driven Design) principles
-- 😎 Dockerized and ready to deploy on Kubernetes
-- 😎 Designed for scalability and real-time processing
+📦 Efficient data storage in MongoDB with optimized indexing for fast queries
+
+🔍 RESTful API offering advanced log retrieval with built-in pagination and filtering
+
+🧠 Structured using Domain-Driven Design (DDD) for maintainability and clear separation of concerns
+
+🐳 Fully containerized with Docker, prepared for deployment on Kubernetes
+
+📈 Engineered for scalability and real-time event handling
 
 ---
 
@@ -38,3 +41,25 @@ This is a scalable, event-driven microservice built with Node.js, Kafka, MongoDB
 
 ```bash
 docker build -t activity-service .
+
+Dockerfile
+# Use official Node.js LTS image as base
+FROM node:18-alpine
+
+# Set working directory inside container
+WORKDIR /usr/src/app
+
+# Copy package.json and package-lock.json separately (for caching)
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install --production
+
+# Copy app source code
+COPY . .
+
+# Expose the port your app listens on (change if needed)
+EXPOSE 3000
+
+# Start the app
+CMD ["node", "src/index.js"]
