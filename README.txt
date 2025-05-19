@@ -42,7 +42,7 @@
 ```bash
 docker build -t activity-service .
 
-Dockerfile
+💀 Dockerfile
 # Use official Node.js LTS image as base
 FROM node:18-alpine
 
@@ -63,3 +63,7 @@ EXPOSE 3000
 
 # Start the app
 CMD ["node", "src/index.js"]
+
+
+🤡 docker-compose.yml
+
