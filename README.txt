@@ -1,11 +1,40 @@
-> Why do I have a folder named ".vercel" in my project?
-The ".vercel" folder is created when you link a directory to a Vercel project.
+# 🧩 Activity Logging Microservice
 
-> What does the "project.json" file contain?
-The "project.json" file contains:
-- The ID of the Vercel project that you linked ("projectId")
-- The ID of the user or team your Vercel project is owned by ("orgId")
+This is a scalable, event-driven microservice built with Node.js, Kafka, MongoDB, and Docker. It handles user activity logs in real time, stores them efficiently, and exposes a REST API to query logs with pagination and filtering.
 
-> Should I commit the ".vercel" folder?
-No, you should not share the ".vercel" folder with anyone.
-Upon creation, it will be automatically added to your ".gitignore" file.
+---
+
+## 🚀 Project Features
+
+- ✅ Kafka Producer/Consumer to process user activity logs asynchronously
+- ✅ MongoDB storage with proper indexing for performance
+- ✅ REST API with pagination & filtering support
+- ✅ Built using DDD (Domain-Driven Design) principles
+- ✅ Dockerized and ready to deploy on Kubernetes
+- ✅ Designed for scalability and real-time processing
+
+---
+
+## 📁 Project Structure (Based on DDD)
+
+
+---
+
+## 🛠️ Tech Stack
+
+- Node.js
+- Apache Kafka
+- MongoDB
+- Express.js
+- Docker
+- Kubernetes
+- Domain-Driven Design (DDD)
+
+---
+
+## 🐳 Docker Instructions
+
+### 1. Build Docker Image
+
+```bash
+docker build -t activity-service .
