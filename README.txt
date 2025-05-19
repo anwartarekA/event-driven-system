@@ -66,4 +66,44 @@ CMD ["node", "src/index.js"]
 
 
 🤡 docker-compose.yml
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+      - kafka
+    environment:
+      - MONGO_URL=mongodb+srv://anwartarek719:AnwarTarek123@cluster0.qinpghc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      - KAFKA_BROKER=kafka:9092
+      - PORT=3000
+    env_file:
+      - ./config.env
+  mongo:
+    image: mongo:6
+    ports:
+      - "3000:3000"
+    volumes:
+      - mongo-data:/data/db
 
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    depends_on:
+      - zookeeper
+
+volumes:
+  mongo-data:
